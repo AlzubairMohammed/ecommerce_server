@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { productsValidator } = require("../validations/products");
 const {
   getProducts,
   getProduct,
@@ -21,7 +22,7 @@ const {
  *             schema:
  *               type: array
  */
-router.get("/", getProducts);
+router.get("/", productsValidator(), getProducts);
 router.get("/:id", getProduct);
 router.post("/", createProduct);
 router.put("/:id", updateProduct);
