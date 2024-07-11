@@ -20,8 +20,6 @@ const {
  *           application/json:
  *             schema:
  *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Product'
  */
 router.get("/", getProducts);
 router.get("/:id", getProduct);
