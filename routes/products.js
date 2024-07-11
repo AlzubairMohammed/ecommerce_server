@@ -105,7 +105,58 @@ router.get("/:id", getProduct);
  *         description: Some server error
  */
 router.post("/", createProduct);
+/**
+ * @swagger
+ * /products/{id}:
+ *  put:
+ *    summary: Update the product by the id
+ *    tags: [Products]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The product id
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/Product'
+ *    responses:
+ *      200:
+ *        description: The product was updated
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Product'
+ *      404:
+ *        description: The product was not found
+ *      500:
+ *        description: Some error happened
+ */
 router.put("/:id", updateProduct);
+/**
+ * @swagger
+ * /products/{id}:
+ *   delete:
+ *     summary: Remove the product by id
+ *     tags: [Products]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The product id
+ *
+ *     responses:
+ *       200:
+ *         description: The product was deleted
+ *       404:
+ *         description: The product was not found
+ */
 router.delete("/:id", deleteProduct);
 
 module.exports = router;
