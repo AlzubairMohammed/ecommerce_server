@@ -10,10 +10,18 @@ exports.getProducts = asyncWrapper(async (req, res) => {
   return res.json({ status: httpStatus.SUCCESS, data });
 });
 
-exports.getProduct = asyncWrapper(async (req, res) => {
+exports.getProduct = asyncWrapper(async (req, res, next) => {
   let data = await products.findOne({
     where: { id: req.params.id },
   });
+  if (!data) {
+    const error = errorResponse.create(
+      "Product not found",
+      404,
+      httpStatus.FAIL
+    );
+    return next(error);
+  }
   return res.json({ status: httpStatus.SUCCESS, data });
 });
 

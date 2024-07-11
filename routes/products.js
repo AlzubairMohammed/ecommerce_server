@@ -23,6 +23,28 @@ const {
  *               type: array
  */
 router.get("/", productsValidator(), getProducts);
+/**
+ * @swagger
+ * /products/{id}:
+ *   get:
+ *     summary: Get the product by id
+ *     tags: [Products]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The product id
+ *     responses:
+ *       200:
+ *         description: The product description by id
+ *         contens:
+ *           application/json:
+ *       404:
+ *         description: The product was not found
+ */
+
 router.get("/:id", getProduct);
 router.post("/", createProduct);
 router.put("/:id", updateProduct);
