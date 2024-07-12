@@ -33,6 +33,7 @@ const options = {
   },
   apis: ["./routes/*.js"],
 };
+app.use("/", swaggerUI.serve, swaggerUI.setup(specs));
 const specs = swaggerJsDoc(options);
 app.use((error, req, res, next) => {
   res.status(error.statusCode || 500).json({
@@ -42,6 +43,5 @@ app.use((error, req, res, next) => {
     data: null,
   });
 });
-app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
 app.listen(PORT, () => console.log(`App listen in ${PORT}`));
