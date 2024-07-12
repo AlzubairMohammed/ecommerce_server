@@ -33,8 +33,9 @@ const options = {
   },
   apis: ["./routes/*.js"],
 };
-app.use("/", swaggerUI.serve, swaggerUI.setup(specs));
 const specs = swaggerJsDoc(options);
+app.use("/", swaggerUI.serve, swaggerUI.setup(specs));
+
 app.use((error, req, res, next) => {
   res.status(error.statusCode || 500).json({
     status: error.statusText || httpStatus.ERROR,
