@@ -34,7 +34,7 @@ const options = {
   apis: ["./routes/*.js"],
 };
 const specs = swaggerJsDoc(options);
-app.use("/", swaggerUI.serve, swaggerUI.setup(specs));
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
 app.use((error, req, res, next) => {
   res.status(error.statusCode || 500).json({
